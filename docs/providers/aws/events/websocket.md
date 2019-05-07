@@ -186,3 +186,32 @@ module.exports.defaultHandler = async (event, context) => {
   };
 }
 ```
+
+## Tags / Stack Tags
+
+Websocket stage variables will be set to the `tags` and `stackTags` values defined at the `provider` level:
+
+```yml
+# serverless.yml
+
+provider:
+  name: aws
+  stackTags:
+    stackTagKey: stackTagValue
+  tags:
+    tagKey: tagValue
+```
+
+### Logs
+
+Use the following configuration to enable Websocket logs:
+
+```yml
+# serverless.yml
+provider:
+  name: aws
+  logs:
+    websockets: true
+```
+
+The log streams will be generated in a dedicated log group which follows the naming schema `/aws/websockets/{service}-{stage}`.
